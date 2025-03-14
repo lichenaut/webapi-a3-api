@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "f42fd236-cb4c-4b7b-9903-be95c5b949c9",
+		"name": "CSCI3916_HW3_MATTO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34573647",
+		"_collection_link": "https://webapi-class.postman.co/workspace/webapi-workspace~25d20f53-9c9a-468f-a6f1-151ff32ba87c/collection/34573647-f42fd236-cb4c-4b7b-9903-be95c5b949c9?action=share&source=collection_link&creator=34573647"
+	},
+	"item": [
+		{
+			"name": "POST jwt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"cu_user2\",\r\n    \"password\": \"cu_rulez2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://webapi-a3-api.onrender.com/signup",
+					"protocol": "https",
+					"host": [
+						"webapi-a3-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Already Exists Error: POST jwt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"cu_user\",\r\n    \"password\": \"cu_rulez\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://webapi-a3-api.onrender.com/signup",
+					"protocol": "https",
+					"host": [
+						"webapi-a3-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"JWT\", jsonData.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"cu_user\",\r\n    \"password\": \"cu_rulez\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://webapi-a3-api.onrender.com/signin",
+					"protocol": "https",
+					"host": [
+						"webapi-a3-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST movies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"The Shawshank Redemption\",\n  \"releaseDate\": 1994,\n  \"genre\": \"Drama\",\n  \"actors\": [\n    {\n      \"actorName\": \"Tim Robbins\",\n      \"characterName\": \"Andy Dufresne\"\n    },\n    {\n      \"actorName\": \"Morgan Freeman\",\n      \"characterName\": \"Red\"\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://webapi-a3-api.onrender.com/movies",
+					"protocol": "https",
+					"host": [
+						"webapi-a3-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error: POST movies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"releaseDate\": 1994,\n  \"genre\": \"Drama\",\n  \"actors\": [\n    {\n      \"actorName\": \"Tim Robbins\",\n      \"characterName\": \"Andy Dufresne\"\n    },\n    {\n      \"actorName\": \"Morgan Freeman\",\n      \"characterName\": \"Red\"\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://webapi-a3-api.onrender.com/movies?Authorization={{JWT}}",
+					"protocol": "https",
+					"host": [
+						"webapi-a3-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "Authorization",
+							"value": "{{JWT}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET movies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Set MOVIE_VAR to first movie ID\", function () {\r",
+							"  var jsonData = pm.response.json();\r",
+							"  var firstMovieId = jsonData.movies[0]._id;\r",
+							"  pm.environment.set(\"MOVIE_VAR\", firstMovieId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://webapi-a3-api.onrender.com/movies",
+					"protocol": "https",
+					"host": [
+						"webapi-a3-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT movies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://webapi-a3-api.onrender.com/movies/{{MOVIE_VAR}}",
+					"protocol": "https",
+					"host": [
+						"webapi-a3-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"movies",
+						"{{MOVIE_VAR}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE movies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://webapi-a3-api.onrender.com/movies/{{MOVIE_VAR}}",
+					"protocol": "https",
+					"host": [
+						"webapi-a3-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"movies",
+						"{{MOVIE_VAR}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
