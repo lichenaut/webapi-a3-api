@@ -3,11 +3,12 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const authJwtController = require("./auth_jwt"); // You're not using authController, consider removing it
+const authJwtController = require("./auth_jwt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const User = require("./Users");
-const Movie = require("./Movies"); // You're not using Movie, consider removing it
+const Movie = require("./Movies");
+const { startMongo, connectDB } = require("./mongo");
 
 const app = express();
 app.use(cors());
@@ -198,8 +199,11 @@ router
 app.use("/", router);
 
 const PORT = process.env.PORT || 8080; // Define PORT before using it
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+startMongo().then(() => {
+  connectDB().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  });
 });
-
 module.exports = app; // for testing only
