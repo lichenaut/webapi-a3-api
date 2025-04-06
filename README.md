@@ -1,11 +1,6 @@
 Note: Render's rate limiting and available memory on the free plan will make visiting my websites and making my Postman requests very unreliable.
 
-API site: https://webapi-a3-api.onrender.com/
-React 19 site: https://webapi-a3-r19.onrender.com/
-
-Postman collection link: https://webapi-class.postman.co/workspace/webapi-workspace~25d20f53-9c9a-468f-a6f1-151ff32ba87c/collection/34573647-f42fd236-cb4c-4b7b-9903-be95c5b949c9?action=share&creator=34573647&active-environment=34573647-0a610ce4-fb6c-403b-9a3a-522fe9811800
-
-Postman collection file: postman_collection.json
+https://webapi-class.postman.co/workspace/My-Workspace~edc9a8ac-3fb0-4264-8986-1549a3452f8a/collection/34573647-f85c3a6e-6c75-481e-8c22-71b9fb81dafe?action=share&creator=34573647&active-environment=34573647-a7e7e217-fe6c-4902-ae68-37a737b2f31d
 
 # Assignment Three
 
